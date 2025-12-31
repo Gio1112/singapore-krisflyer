@@ -1,16 +1,20 @@
-FROM node:18-alpine
+FROM node:20-slim
 
-# Create app directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy package files and install dependencies
-COPY package*.json ./
-RUN npm install --omit=dev
-
-# Copy all other source files (index.js, etc.)
-COPY . .
-
-# Create the data directory for your persistent JSON files
+# Create data directory
 RUN mkdir -p /data
 
-CMD [ "node", "index.js" ]
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install --production
+
+# Copy bot code
+COPY index.js ./
+
+# Volume for persistent data
+VOLUME /data
+
+CMD ["node", "index.js"]
