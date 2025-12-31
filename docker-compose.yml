@@ -6,9 +6,9 @@ services:
     container_name: krisflyer-bot
     restart: unless-stopped
     environment:
-      - DISCORD_TOKEN=${DISCORD_TOKEN}
-      - CLIENT_ID=${CLIENT_ID}
-      - GUILD_ID=${GUILD_ID}
+      - DISCORD_TOKEN=MTQ1NDA1Mzk2NTI1MDQzMzA4Nw.GHCfKy.rF5tIJlN-wnqiIh5v-JcbmNBjP87K4gUzW3m-o
+      - CLIENT_ID=1454053965250433087
+      - GUILD_ID=1388756702492495872
     volumes:
       - krisflyer-data:/data
       - /etc/timezone:/etc/timezone:ro
@@ -16,3 +16,4 @@ services:
 
 volumes:
   krisflyer-data:
+
