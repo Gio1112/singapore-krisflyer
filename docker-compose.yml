@@ -1,12 +1,10 @@
 version: '3.8'
-
 services:
   krisflyer-bot:
     build: .
     container_name: krisflyer_bot
     restart: unless-stopped
     volumes:
-      # This ensures your miles/shop data is saved on the server
       - bot_data:/data
     environment:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
