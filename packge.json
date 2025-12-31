@@ -1,7 +1,12 @@
 {
   "name": "krisflyer-bot",
   "version": "1.0.0",
+  "description": "Singapore Airlines KrisFlyer Discord Bot",
   "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5"
