@@ -2,18 +2,19 @@ version: '3.8'
 
 services:
   krisflyer-bot:
-    build: .
-    image: krisflyer-bot:latest
+    image: node:18-alpine
     container_name: krisflyer_bot
     restart: unless-stopped
+    working_dir: /usr/src/app
     volumes:
-      # This maps the internal /data folder to a named volume
+      - .:/usr/src/app
       - bot_data:/data
     environment:
-      # These variables will be overridden by Portainer
       - DISCORD_TOKEN=${DISCORD_TOKEN}
       - CLIENT_ID=${CLIENT_ID}
       - GUILD_ID=${GUILD_ID}
+    # This command installs the tiny libraries and starts the bot
+    command: sh -c "npm install --production && node index.js"
 
 volumes:
   bot_data:
