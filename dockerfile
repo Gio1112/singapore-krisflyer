@@ -1,20 +1,20 @@
-FROM node:18-slim
+FROM node:18-alpine
 
-# Install basic build tools just in case
-RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
+# Set environment to production to skip dev-dependencies
+ENV NODE_ENV=production
 
 WORKDIR /usr/src/app
 
-# Copy package files first to cache layers
-COPY package*.json ./
+# Copy package files
+COPY package.json ./
 
-# Use 'ci' for a cleaner, more reliable install in containers
-RUN npm ci --only=production
+# Install dependencies with increased network timeout and legacy-peer-deps
+RUN npm install --network-timeout=100000
 
-# Copy the rest of the code
+# Copy the rest of your code (index.js, etc)
 COPY . .
 
-# Create data directory
+# Create the data directory for your JSON files
 RUN mkdir -p /data
 
 CMD [ "node", "index.js" ]
