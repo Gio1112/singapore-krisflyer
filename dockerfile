@@ -1,17 +1,20 @@
-FROM node:18-alpine
+FROM node:18-slim
 
-# Create app directory
+# Install basic build tools just in case
+RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /usr/src/app
 
-# Install app dependencies
+# Copy package files first to cache layers
 COPY package*.json ./
-RUN npm install
 
-# Bundle app source
+# Use 'ci' for a cleaner, more reliable install in containers
+RUN npm ci --only=production
+
+# Copy the rest of the code
 COPY . .
 
-# Create the data directory
+# Create data directory
 RUN mkdir -p /data
 
-# Start the bot
-CMD [ "npm", "start" ]
+CMD [ "node", "index.js" ]
