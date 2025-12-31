@@ -42,8 +42,8 @@ const EMOJIS = {
 
 // === IMAGES ===
 const IMAGES = {
-  logo: "https://i.imgur.com/YourLogoImage.png", // Replace with actual hosted image URL
-  footer: "https://i.imgur.com/YourFooterImage.png" // Replace with actual hosted image URL
+  logo: "https://cdn.discordapp.com/attachments/1453548692421345300/1454043051650449438/image.png?ex=69563e1e&is=6954ec9e&hm=9bf9a604bff23ded92e1e2cc2e0cedd65ec518409c22ff4bef63b81e71d01472&", // Replace with actual hosted image URL
+  footer: "https://cdn.discordapp.com/attachments/1453548692421345300/1454043051956764784/image.png?ex=69563e1e&is=6954ec9e&hm=1775b78cf598db70bfc845816189366a8d331e72384fbbc67f7ced839fa43e73&" // Replace with actual hosted image URL
 };
 
 // === KRISFLYER TIER CONFIGURATION ===
@@ -1025,5 +1025,6 @@ client.on("interactionCreate", async (interaction) => {
     }
   }
 });
+
 
 client.login(process.env.DISCORD_TOKEN);
