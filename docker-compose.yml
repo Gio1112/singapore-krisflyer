@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  krisflyer-bot:
+    build: .
+    image: krisflyer-bot:latest
+    container_name: krisflyer_bot
+    restart: unless-stopped
+    volumes:
+      # This maps the internal /data folder to a named volume
+      - bot_data:/data
+    environment:
+      # These variables will be overridden by Portainer
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - CLIENT_ID=${CLIENT_ID}
+      - GUILD_ID=${GUILD_ID}
+
+volumes:
+  bot_data:
