@@ -2,19 +2,16 @@ version: '3.8'
 
 services:
   krisflyer-bot:
-    image: node:18-alpine
+    build: .
     container_name: krisflyer_bot
     restart: unless-stopped
-    working_dir: /usr/src/app
     volumes:
-      - .:/usr/src/app
+      # This ensures your miles/shop data is saved on the server
       - bot_data:/data
     environment:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
       - CLIENT_ID=${CLIENT_ID}
       - GUILD_ID=${GUILD_ID}
-    # This command installs the tiny libraries and starts the bot
-    command: sh -c "npm install --production && node index.js"
 
 volumes:
   bot_data:
