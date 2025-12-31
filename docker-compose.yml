@@ -1,16 +1,18 @@
-version: '3.8'
+version: '3.9'
 
 services:
   krisflyer-bot:
     build: .
-    container_name: krisflyer_bot
+    container_name: krisflyer-bot
     restart: unless-stopped
-    volumes:
-      - bot_data:/data
     environment:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
       - CLIENT_ID=${CLIENT_ID}
       - GUILD_ID=${GUILD_ID}
+    volumes:
+      - krisflyer-data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
 
 volumes:
-  bot_data:
+  krisflyer-data:
